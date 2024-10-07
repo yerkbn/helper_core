@@ -69,8 +69,9 @@ class PaginationBloc<T extends PaginationParent>
         _paginationData!.getTotalPages == _paginationData!.getCurrentPage) {
       emit(SuccessPaginationState<T>(data: _paginationData!));
     } else {
+      int page = (_paginationData?.getCurrentPage ?? 0) + 1;
       final PaginationParams params = PaginationParams(
-        page: (_paginationData?.getCurrentPage ?? 0) + 1,
+        page: page,
         secondaryParams: {..._filter},
         search: _search,
       );

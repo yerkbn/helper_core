@@ -13,7 +13,7 @@ class PaginationParams extends ParamsParent {
 
   @override
   Map<String, dynamic> getBody({Map<String, dynamic> params = const {}}) {
-    return {'page': page, ...params, ...secondaryParams, 'search': search};
+    return {...secondaryParams, ...params, 'page': page, 'search': search};
   }
 
   @override
