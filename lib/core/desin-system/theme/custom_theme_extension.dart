@@ -68,7 +68,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
         floatingLabelStyle: TextStyle(color: Colors.black),
       ),
       appBarTheme: AppBarTheme(color: extension.backgroundColor2),
-      scaffoldBackgroundColor: extension.backgroundColor1,
+      scaffoldBackgroundColor: extension.backgroundColor2,
       primaryColor: extension.primaryColor,
       progressIndicatorTheme:
           const ProgressIndicatorThemeData(color: Colors.black),
