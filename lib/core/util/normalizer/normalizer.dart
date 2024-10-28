@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +20,39 @@ mixin Normalizer {
           '', // if you want to add currency symbol then pass that in this else leave it empty.
     ).format(val);
     return formattedNumber;
+  }
+
+  String elapsedTime(DateTime created) {
+    final now = DateTime.now();
+    final difference = now.difference(created);
+    if (difference.inMinutes < 1) {
+      return 'date.justNow'.tr();
+    } else if (difference.inMinutes < 60) {
+      return 'date.minAgo'.tr(args: [difference.inMinutes.toString()]);
+    } else if (difference.inHours < 24) {
+      return difference.inHours == 1
+          ? 'date.hourAgo'.tr(args: [difference.inHours.toString()])
+          : 'date.hoursAgo'.tr(args: [difference.inHours.toString()]);
+    } else if (difference.inDays < 7) {
+      return difference.inDays == 1
+          ? 'date.dayAgo'.tr(args: [difference.inDays.toString()])
+          : 'date.daysAgo'.tr(args: [difference.inDays.toString()]);
+    } else if (difference.inDays < 30) {
+      final weeks = (difference.inDays / 7).floor();
+      return weeks == 1
+          ? 'date.weekAgo'.tr(args: [weeks.toString()])
+          : 'date.weeksAgo'.tr(args: [weeks.toString()]);
+    } else if (difference.inDays < 365) {
+      final months = (difference.inDays / 30).floor();
+      return months == 1
+          ? 'date.monthAgo'.tr(args: [months.toString()])
+          : 'date.monthsAgo'.tr(args: [months.toString()]);
+    } else {
+      final years = (difference.inDays / 365).floor();
+      return years == 1
+          ? 'date.yearAgo'.tr(args: [years.toString()])
+          : 'date.yearsAgo'.tr(args: [years.toString()]);
+    }
   }
 
   /// This will cut text in given range

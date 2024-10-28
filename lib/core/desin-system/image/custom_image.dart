@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart';
 
 class CustomImageWidget extends StatelessWidget {
@@ -19,6 +19,7 @@ class CustomImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CustomThemeExtension theme = CustomThemeExtension.of(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius.r),
       child: SizedBox(
@@ -29,10 +30,7 @@ class CustomImageWidget extends StatelessWidget {
           fit: BoxFit.cover,
           placeholder: (context, url) => const Center(child: CustomLoading()),
           errorWidget: (context, url, error) {
-            return const ColoredBox(
-              color: Colors.grey,
-              child: Center(child: Icon(Icons.error)),
-            );
+            return ColoredBox(color: theme.backgroundColor4);
           },
         ),
       ),

@@ -22,6 +22,7 @@ class CustomButton extends StatelessWidget {
   final Widget? child;
   final Color? color;
   final Color? textColor;
+  final Color? disabledTextColor;
   final BorderRadius? fullBorderRadius;
 
   const CustomButton({
@@ -39,6 +40,7 @@ class CustomButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.borderRadius = 16,
     this.fullBorderRadius,
+    this.disabledTextColor,
     this.child,
   });
 
@@ -77,6 +79,7 @@ class CustomButton extends StatelessWidget {
     bool isDisabled = false,
     bool isWidthOff = false,
     Color? textColor = Colors.white,
+    Color? disabledTextColor,
     Color? color,
     Widget? child,
     double? borderRadius,
@@ -94,6 +97,7 @@ class CustomButton extends StatelessWidget {
       color: color,
       textColor: textColor,
       fullBorderRadius: fullBorderRadius,
+      disabledTextColor: disabledTextColor,
       child: child,
     );
   }
@@ -107,7 +111,9 @@ class CustomButton extends StatelessWidget {
       bool isLoading = false,
       bool isDisabled = false,
       bool isWidthOff = false,
+      double borderRadius = 12,
       Color? textColor = Colors.white,
+      Color? disabledTextColor,
       Color? color,
       Widget? child}) {
     return CustomButton(
@@ -118,10 +124,11 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       width: width,
       height: height,
-      borderRadius: 12,
+      borderRadius: borderRadius,
       fontSize: fontSize,
       color: color,
       textColor: textColor,
+      disabledTextColor: disabledTextColor,
       child: child,
     );
   }
@@ -232,7 +239,9 @@ class CustomButton extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: style.copyWith(
                     fontSize: fontSize.h,
-                    color: isDisabled ? theme.backgroundColor2 : primaryColor,
+                    color: isDisabled
+                        ? disabledTextColor ?? theme.backgroundColor2
+                        : primaryColor,
                   ),
                 ),
               ],

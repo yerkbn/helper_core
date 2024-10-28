@@ -28,6 +28,12 @@ class ExceptionMapper {
     EmailTakenExcD.status: EmailTakenExcD.parseMap,
   };
 
+  ExceptionMapper(
+      {Map<int, ExceptionData Function(Map objectMap)> customExceptions =
+          const {}}) {
+    _exceptions.addAll(customExceptions);
+  }
+
   /// This should return Data if every thing is OK and statusCode == 1000
   /// or throw exception
   ///
