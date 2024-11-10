@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,17 +18,22 @@ class CustomLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(padding.h),
-        child: SizedBox(
+          padding: EdgeInsets.all(padding.h),
+          child: SizedBox(
             height: progresHeight.h,
             width: progresHeight.h,
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(
-                color,
-              ),
-              strokeWidth: strokeWidth,
-            )),
-      ),
+            child: CupertinoActivityIndicator(
+              color: color,
+            ),
+          )
+
+          // CircularProgressIndicator(
+          //   valueColor: AlwaysStoppedAnimation(
+          //     color,
+          //   ),
+          //   strokeWidth: strokeWidth,
+          // )),
+          ),
     );
   }
 }

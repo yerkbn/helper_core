@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/button/custom_button_wrapper.dart';
 import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -74,7 +75,7 @@ class CustomButton extends StatelessWidget {
     required String title,
     required void Function() onPressed,
     double width = 327,
-    double height = 56,
+    double height = 54,
     bool isLoading = false,
     bool isDisabled = false,
     bool isWidthOff = false,
@@ -178,12 +179,16 @@ class CustomButton extends StatelessWidget {
             }
             return color ?? theme.primaryColor;
           }),
-          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius:
-                  fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
-            ),
-          ),
+          shape: WidgetStateProperty.all<SmoothRectangleBorder>(
+              SmoothRectangleBorder(
+                  borderRadius:
+                      fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
+                  smoothness: 0.6)
+              // RoundedRectangleBorder(
+              //   borderRadius:
+              //       fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
+              // ),
+              ),
         ),
         child: _buildChild(
             context: context,
@@ -203,7 +208,7 @@ class CustomButton extends StatelessWidget {
             : Text(
                 title,
                 textAlign: TextAlign.center,
-                style: theme.headline2.copyWith(
+                style: theme.headline1.copyWith(
                   fontSize: fontSize.h,
                   color: isDisabled ? theme.backgroundColor1 : textColor,
                 ),
@@ -220,7 +225,7 @@ class CustomButton extends StatelessWidget {
       {required BuildContext context,
       required Color primaryColor,
       required CustomThemeExtension theme}) {
-    final TextStyle style = fontSize < 14 ? theme.headline3 : theme.headline2;
+    final TextStyle style = fontSize < 14 ? theme.headline2 : theme.headline1;
     return isLoading
         ? CustomLoading(
             progresHeight: progresHeight,

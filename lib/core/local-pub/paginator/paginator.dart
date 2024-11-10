@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:helper_core/core/desin-system/states/failure/custom_failure.dart';
 import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 import 'package:helper_core/core/local-pub/extension/sizedbox_extension.dart';
@@ -8,7 +7,6 @@ import 'package:helper_core/core/local-pub/paginator/bloc/pagination_bloc.dart';
 import 'package:helper_core/core/local-pub/paginator/bloc/pagination_params.dart';
 import 'package:helper_core/core/local-pub/paginator/pagination_parent.dart';
 import 'package:helper_core/core/usecases/usecase.dart';
-import 'package:helper_core/core/util/snack-bar/show_custom_snack_bar.dart';
 
 /// [T] - stands for bigger holder like {page: 1, ..., items: [S, S, ...]}
 class Paginator<T extends PaginationParent<S>, S> {
@@ -74,7 +72,6 @@ class Paginator<T extends PaginationParent<S>, S> {
   }
 
   Widget _buildChild(BuildContext context) {
-    final CustomThemeExtension theme = CustomThemeExtension.of(context);
     return SizedBox(
       // height: UiConfig.globalHeight.h,
       child: BlocConsumer<PaginationBloc, PaginationState>(
@@ -145,6 +142,14 @@ class Paginator<T extends PaginationParent<S>, S> {
           // );
         },
       ),
+    );
+  }
+
+  void scroll2Top() {
+    _scrollController.animateTo(
+      0.0, // Position to scroll to (0.0 for the top)
+      duration: Duration(milliseconds: 300), // Duration of the scroll animation
+      curve: Curves.easeOut, // Animation curve for a smooth scroll
     );
   }
 

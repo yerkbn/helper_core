@@ -17,6 +17,7 @@ class PaginationBloc<T extends PaginationParent>
   T? _paginationData;
   Map<String, dynamic> _filter = {};
   String _search = "";
+  bool _alreadyLoading = false;
 
   PaginationBloc({
     required this.paginationUseCase,
@@ -57,6 +58,10 @@ class PaginationBloc<T extends PaginationParent>
 
   Future<void> _onNext(
       NetxtPaginationEvent event, Emitter<PaginationState> emit) async {
+    if (_alreadyLoading) {
+      return; // to content duplication
+    }
+
     /// initial loading displayer
     if (_paginationData == null) {
       emit(LoadingPaginationState());
@@ -75,8 +80,9 @@ class PaginationBloc<T extends PaginationParent>
         secondaryParams: {..._filter},
         search: _search,
       );
-
+      _alreadyLoading = true;
       final result = await paginationUseCase(params);
+      _alreadyLoading = false;
       result.fold(
         (failure) {
           emit(FailurePaginationState());

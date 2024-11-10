@@ -15,6 +15,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class Fetcher<T> {
   final UseCase<T, ParamsParent> fetcherUseCase;
   final Widget Function(T feet) buildSuccess;
+  final Function(BuildContext context, FetcherState state)? listener;
   final bool isRefreshIsEnabled;
   final Widget? loadingShimmer;
   final ParamsParent initalParams;
@@ -30,6 +31,7 @@ class Fetcher<T> {
     required this.buildSuccess,
     required this.fetcherUseCase,
     this.loadingShimmer,
+    this.listener,
     this.isRefreshIsEnabled = true,
     this.initalParams = const NoParams(),
     this.showFailure = true,
@@ -85,6 +87,9 @@ class Fetcher<T> {
         },
         bloc: _fetcherBloc,
         builder: (BuildContext context, FetcherState state) {
+          if (listener != null) {
+            listener!(context, state);
+          }
           if (state is LoadingFetcherState || state is InitialFetcherState) {
             if (loadingShimmer != null) {
               return loadingShimmer!;
