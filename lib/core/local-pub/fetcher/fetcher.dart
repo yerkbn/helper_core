@@ -1,3 +1,4 @@
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:helper_core/core/local-pub/fetcher/fetcher/fetcher_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +7,6 @@ import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart
 import 'package:helper_core/core/usecases/no_params.dart';
 import 'package:helper_core/core/usecases/params_parent.dart';
 import 'package:helper_core/core/usecases/usecase.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// This is simple module is responsibile for fetching elements
 /// and provide it to provided class and handle all View cases
@@ -23,7 +23,7 @@ class Fetcher<T> {
   final Function(T feet)? successEntity;
 
   // local usage
-  final RefreshController _refreshController = RefreshController();
+  // final IndicatorController _refreshController = IndicatorController();
   final FetcherBloc<T> _fetcherBloc;
   T? _data;
 
@@ -55,16 +55,17 @@ class Fetcher<T> {
   Widget build(BuildContext context,
       {Widget Function(T feet)? buildSuccessDirect, Widget? loadingWidget}) {
     if (isRefreshIsEnabled) {
-      return SmartRefresher(
-        controller: _refreshController,
-        onRefresh: () {
+      return CustomMaterialIndicator(
+        onRefresh: () async {
+          await Future.delayed(const Duration(milliseconds: 500));
           _fetcherBloc
               .add(RefreshFetcherEvent(result: _data, params: initalParams));
         },
+        indicatorBuilder: (_, __) => const CustomLoading(color: Colors.black),
+        useMaterialContainer: false,
         child: _buildContent(context, buildSuccessDirect: buildSuccessDirect),
       );
     }
-
     return _buildContent(context, buildSuccessDirect: buildSuccessDirect);
   }
 
@@ -75,7 +76,7 @@ class Fetcher<T> {
           if (isRefreshIsEnabled) {
             if (!((state is LoadingFetcherState) ||
                 (state is RefreshFetcherState))) {
-              _refreshController.refreshCompleted();
+              // _refreshController.refreshCompleted();
             }
           }
 

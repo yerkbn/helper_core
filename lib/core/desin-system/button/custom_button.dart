@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/button/custom_button_wrapper.dart';
 import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
-import 'package:smooth_corner/smooth_corner.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -140,6 +139,7 @@ class CustomButton extends StatelessWidget {
     double width = 327,
     double height = 24,
     double fontSize = 12,
+    double borderRadius = 6,
     bool isLoading = false,
     bool isDisabled = false,
     bool isWidthOff = false,
@@ -156,7 +156,7 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: height,
       progresHeight: 12,
-      borderRadius: 6,
+      borderRadius: borderRadius,
       fontSize: fontSize,
       color: color,
       textColor: textColor,
@@ -179,16 +179,16 @@ class CustomButton extends StatelessWidget {
             }
             return color ?? theme.primaryColor;
           }),
-          shape: WidgetStateProperty.all<SmoothRectangleBorder>(
-              SmoothRectangleBorder(
-                  borderRadius:
-                      fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
-                  smoothness: 0.6)
-              // RoundedRectangleBorder(
-              //   borderRadius:
-              //       fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
-              // ),
-              ),
+          shape: WidgetStateProperty.all(
+            // SmoothRectangleBorder(
+            //     borderRadius:
+            //         fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
+            //     smoothness: 0.6)
+            ContinuousRectangleBorder(
+              borderRadius:
+                  fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
+            ),
+          ),
         ),
         child: _buildChild(
             context: context,

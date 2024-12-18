@@ -42,7 +42,10 @@ class PaginationBloc<T extends PaginationParent>
 
   Future<void> _onFilter(
       FilterPaginationEvent event, Emitter<PaginationState> emit) async {
-    _filter = {...event.filter, ...initialParams};
+    _filter = {
+      ...initialParams,
+      ...event.filter,
+    };
     _paginationData = null;
     add(NetxtPaginationEvent());
     emit(LoadingPaginationState());
@@ -85,6 +88,7 @@ class PaginationBloc<T extends PaginationParent>
       _alreadyLoading = false;
       result.fold(
         (failure) {
+          print("FAILURE = $failure");
           emit(FailurePaginationState());
         },
         (entity) {

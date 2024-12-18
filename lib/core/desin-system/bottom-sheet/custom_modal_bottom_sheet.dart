@@ -19,12 +19,12 @@ void showCustomModalBottomSheet({
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
+              topLeft: Radius.circular(32),
+              topRight: Radius.circular(32),
             ),
             color: theme.backgroundColor1,
           ),
-          padding: EdgeInsets.only(bottom: 32.h, top: 16.h),
+          padding: EdgeInsets.only(bottom: 32.h, top: 24.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

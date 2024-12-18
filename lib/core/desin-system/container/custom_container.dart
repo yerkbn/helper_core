@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 import 'package:helper_core/core/desin-system/button/custom_button_wrapper.dart';
-import 'package:smooth_corner/smooth_corner.dart';
 
 class CustomContainer extends StatelessWidget {
   final Widget child;
@@ -55,7 +54,7 @@ class CustomContainer extends StatelessWidget {
         onPressed: onPressed,
         foregroundColor: foregroundColor,
         borderRadius: borderRadius,
-        borderRadiusAll: borderRadiusAll.h,
+        borderRadiusAll: borderRadiusAll,
         child: resultChild,
       );
     }
@@ -67,10 +66,15 @@ class CustomContainer extends StatelessWidget {
       decoration: border == null
           ? ShapeDecoration(
               color: color ?? theme.backgroundColor2,
-              shape: SmoothRectangleBorder(
-                  borderRadius:
-                      borderRadius ?? BorderRadius.circular(borderRadiusAll.h),
-                  smoothness: 0.6),
+              shape: ContinuousRectangleBorder(
+                borderRadius:
+                    borderRadius ?? BorderRadius.circular(borderRadiusAll.r),
+              ),
+
+              // SmoothRectangleBorder(
+              //     borderRadius:
+              //         borderRadius ?? BorderRadius.circular(borderRadiusAll.h),
+              //     smoothness: 0.6),
             )
           : BoxDecoration(
               border: border,

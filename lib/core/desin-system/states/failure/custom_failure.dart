@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 import 'package:helper_core/core/desin-system/button/custom_button.dart';
+import 'package:helper_core/core/local-pub/extension/sizedbox_extension.dart';
 
 enum FailureStatus { h1, h2, h3 }
 
@@ -31,8 +32,8 @@ class CustomFailure extends StatelessWidget {
 
   double get getFontSize {
     if (status == FailureStatus.h2) return 10.h;
-    if (status == FailureStatus.h3) return 14.h;
-    return 20.h;
+    if (status == FailureStatus.h3) return 12.h;
+    return 14.h;
   }
 
   @override
@@ -70,16 +71,16 @@ class CustomFailure extends StatelessWidget {
                 fontSize: getFontSize - 4,
               ),
             ),
-            SizedBox(
-              height: 4.h,
-            ),
+            8.ph,
             if (onTap == null)
               const SizedBox()
             else
-              CustomButton.textBtn(
+              CustomButton.h3(
+                width: 184.w,
+                height: 32,
                 title: btnTitle,
                 onPressed: onTap!,
-                color: Colors.white,
+                color: theme.backgroundColor4,
                 fontSize: getFontSize,
               )
           ],

@@ -14,8 +14,6 @@ extension CustomSnackBarColor on CustomSnackBarType {
         return const Color(0xFFF44336);
       case CustomSnackBarType.warning:
         return Colors.orange;
-      default:
-        return Colors.white;
     }
   }
 
@@ -26,8 +24,6 @@ extension CustomSnackBarColor on CustomSnackBarType {
       case CustomSnackBarType.failure:
         return Icons.close_rounded;
       case CustomSnackBarType.warning:
-        return Icons.check_circle;
-      default:
         return Icons.check_circle;
     }
   }
@@ -55,7 +51,7 @@ void showCustomSnackBar({
       width: 343.w,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(
+      shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       backgroundColor: theme.backgroundColor4,

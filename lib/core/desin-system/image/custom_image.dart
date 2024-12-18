@@ -28,7 +28,8 @@ class CustomImageWidget extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: url,
           fit: BoxFit.cover,
-          placeholder: (context, url) => const Center(child: CustomLoading()),
+          placeholder: (context, url) =>
+              const Center(child: CustomLoading(padding: 0)),
           errorWidget: (context, url, error) {
             return ColoredBox(color: theme.backgroundColor4);
           },

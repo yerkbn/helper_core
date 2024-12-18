@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 
 class CustomOutlineButton extends StatelessWidget {
   final String title;
@@ -33,6 +34,7 @@ class CustomOutlineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CustomThemeExtension theme = CustomThemeExtension.of(context);
     return SizedBox(
       width: isWidthOff ? null : width.w,
       height: height.h,
@@ -42,16 +44,17 @@ class CustomOutlineButton extends StatelessWidget {
           backgroundColor: color ?? Colors.white,
           overlayColor: textColor ?? Colors.black,
           shadowColor: textColor ?? Colors.black,
-          side: BorderSide(color: borderColor ?? Colors.black, width: 2),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          side: BorderSide(color: borderColor ?? Colors.black, width: 1.5),
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         ),
         child: Text(
           title,
-          style: TextStyle(
-              color: textColor ?? Colors.black, // Text color
-              fontSize: fontSize),
+          style: theme.headline1.copyWith(
+            color: textColor ?? Colors.black,
+            fontSize: fontSize,
+          ),
           textAlign: TextAlign.center,
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smooth_corner/smooth_corner.dart';
 
 class CustomButtonWrapper extends StatelessWidget {
   final Widget child;
@@ -29,10 +28,15 @@ class CustomButtonWrapper extends StatelessWidget {
       style: TextButton.styleFrom(
         shape: isCircle
             ? const CircleBorder()
-            : SmoothRectangleBorder(
+            : ContinuousRectangleBorder(
                 borderRadius:
                     borderRadius ?? BorderRadius.circular(borderRadiusAll.r),
-                smoothness: 0.6),
+              ),
+        // SmoothRectangleBorder(
+        //     borderRadius:
+        //         borderRadius ?? BorderRadius.circular(borderRadiusAll.r),
+        //     smoothness: 0.6,
+        //   ),
         minimumSize: Size.zero,
         padding: EdgeInsets.zero,
         foregroundColor: foregroundColor ?? Colors.black12,

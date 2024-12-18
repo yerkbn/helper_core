@@ -17,7 +17,7 @@ abstract class CustomFullBottomSheet {
       modalBarrierColor: modalColor ?? theme.backgroundColor2,
       // backgroundColor: theme.backgroundColor3,
       isDismissible: isDismissible,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(20)),
       builder: (context) => isScratch
           ? child
           : Container(
