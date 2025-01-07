@@ -28,7 +28,7 @@ class CustomButtonWrapper extends StatelessWidget {
       style: TextButton.styleFrom(
         shape: isCircle
             ? const CircleBorder()
-            : ContinuousRectangleBorder(
+            : RoundedRectangleBorder(
                 borderRadius:
                     borderRadius ?? BorderRadius.circular(borderRadiusAll.r),
               ),

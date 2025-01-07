@@ -45,18 +45,16 @@ class CustomOutlineButton extends StatelessWidget {
           overlayColor: textColor ?? Colors.black,
           shadowColor: textColor ?? Colors.black,
           side: BorderSide(color: borderColor ?? Colors.black, width: 1.5),
-          shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          // padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 24.w),
         ),
-        child: Text(
-          title,
-          style: theme.headline1.copyWith(
-            color: textColor ?? Colors.black,
-            fontSize: fontSize,
-          ),
-          textAlign: TextAlign.center,
-        ),
+        child: Text(title,
+            style: theme.headline1.copyWith(
+              color: textColor ?? Colors.black,
+              fontSize: fontSize,
+            ),
+            textAlign: TextAlign.center),
       ),
     );
   }

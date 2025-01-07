@@ -184,7 +184,7 @@ class CustomButton extends StatelessWidget {
             //     borderRadius:
             //         fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
             //     smoothness: 0.6)
-            ContinuousRectangleBorder(
+            RoundedRectangleBorder(
               borderRadius:
                   fullBorderRadius ?? BorderRadius.circular(borderRadius.h),
             ),

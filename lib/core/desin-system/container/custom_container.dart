@@ -66,7 +66,7 @@ class CustomContainer extends StatelessWidget {
       decoration: border == null
           ? ShapeDecoration(
               color: color ?? theme.backgroundColor2,
-              shape: ContinuousRectangleBorder(
+              shape: RoundedRectangleBorder(
                 borderRadius:
                     borderRadius ?? BorderRadius.circular(borderRadiusAll.r),
               ),

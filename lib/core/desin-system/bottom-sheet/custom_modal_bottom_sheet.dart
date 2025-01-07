@@ -5,6 +5,7 @@ import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart'
 void showCustomModalBottomSheet({
   required BuildContext context,
   required Widget child,
+  Color? color,
   Function(dynamic value)? onEnd,
 }) {
   showModalBottomSheet(
@@ -22,7 +23,7 @@ void showCustomModalBottomSheet({
               topLeft: Radius.circular(32),
               topRight: Radius.circular(32),
             ),
-            color: theme.backgroundColor1,
+            color: color ?? theme.backgroundColor1,
           ),
           padding: EdgeInsets.only(bottom: 32.h, top: 24.h),
           child: Column(

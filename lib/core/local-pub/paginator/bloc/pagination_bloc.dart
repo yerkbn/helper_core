@@ -74,7 +74,7 @@ class PaginationBloc<T extends PaginationParent>
 
     /// fetching ...
     if (_paginationData != null &&
-        _paginationData!.getTotalPages == _paginationData!.getCurrentPage) {
+        _paginationData!.getTotalPages <= _paginationData!.getCurrentPage) {
       emit(SuccessPaginationState<T>(data: _paginationData!));
     } else {
       int page = (_paginationData?.getCurrentPage ?? 0) + 1;

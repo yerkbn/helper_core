@@ -72,7 +72,7 @@ class Paginator<T extends PaginationParent<S>, S> {
           await Future.delayed(const Duration(milliseconds: 500));
           _paginationBloc.refresh();
         },
-        indicatorBuilder: (_, __) => const CustomLoading(color: Colors.black),
+        indicatorBuilder: (_, __) => const CustomLoading(),
         useMaterialContainer: false,
         child: _buildChild(context),
       );
@@ -94,7 +94,7 @@ class Paginator<T extends PaginationParent<S>, S> {
         },
         builder: (BuildContext context, PaginationState state) {
           if (state is LoadingPaginationState) {
-            return const CustomLoading(color: Colors.black54);
+            return const CustomLoading();
           }
           bool isPagination = false;
           if (state is SuccessPaginationState<T>) {
@@ -115,8 +115,7 @@ class Paginator<T extends PaginationParent<S>, S> {
                   SliverToBoxAdapter(child: buildItem(item, _data!)),
                 // Bottom loading
                 if (isPagination && _data!.getChilds.isNotEmpty)
-                  const SliverToBoxAdapter(
-                      child: CustomLoading(color: Colors.black54)),
+                  const SliverToBoxAdapter(child: CustomLoading()),
 
                 // if empty
                 if (_data!.getChilds.isEmpty && emptyIsEnabled)
@@ -148,6 +147,7 @@ class Paginator<T extends PaginationParent<S>, S> {
   T? get data => _data;
 
   void add(PaginationEvent event) => _paginationBloc.add(event);
+  void refresh() => _paginationBloc.refresh();
 
   void modify(T data) => _paginationBloc.add(EditPaginationEvent<T>(data));
 }

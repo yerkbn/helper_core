@@ -37,24 +37,29 @@ void showCustomSnackBar({
   final CustomThemeExtension theme = CustomThemeExtension.of(context);
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Row(
-        children: [
-          Icon(
-            type.getIconData,
-            color: theme.backgroundColor1,
-          ),
-          10.pw,
-          Text(title, style: theme.headline2.copyWith(color: Colors.white)),
-        ],
-      ),
-      duration: const Duration(milliseconds: 1000),
-      width: 343.w,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      behavior: SnackBarBehavior.floating,
-      shape: ContinuousRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      backgroundColor: theme.backgroundColor4,
-    ),
+        content: Row(
+          children: [
+            Icon(
+              type.getIconData,
+              color: const Color(0xFFFFFFFF), //theme.backgroundColor1,
+            ),
+            10.pw,
+            Text(title,
+                style: theme.headline2.copyWith(
+                  color: const Color(0xFFFFFFFF),
+
+                  // theme.backgroundColor1,
+                )),
+          ],
+        ),
+        duration: const Duration(milliseconds: 1000),
+        width: 343.w,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        backgroundColor: const Color(0xFF373737) //theme.backgroundColor4,
+        ),
   );
 }
