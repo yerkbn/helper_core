@@ -102,9 +102,9 @@ mixin Normalizer {
       const JsonEncoder encoder =
           JsonEncoder.withIndent('  '); // 2 spaces for indentation
       String prettyPrint = encoder.convert(json);
-      printWrapped(prettyPrint);
+      staticPrintWrapped(prettyPrint);
     } else {
-      printWrapped(json);
+      staticPrintWrapped(json);
     }
   }
 
