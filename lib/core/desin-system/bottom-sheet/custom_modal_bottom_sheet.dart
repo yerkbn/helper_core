@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 void showCustomModalBottomSheet({
   required BuildContext context,
@@ -18,12 +19,14 @@ void showCustomModalBottomSheet({
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(32),
-              topRight: Radius.circular(32),
-            ),
+          decoration: ShapeDecoration(
             color: color ?? theme.backgroundColor1,
+            shape: SmoothRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32.r),
+                  topRight: Radius.circular(32.r),
+                ),
+                smoothness: 0.6),
           ),
           padding: EdgeInsets.only(bottom: 32.h, top: 24.h),
           child: Column(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helper_core/core/desin-system/theme/custom_theme_extension.dart';
 import 'package:helper_core/core/desin-system/states/loading/custom_loading.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class CustomImageWidget extends StatelessWidget {
   final String url;
@@ -20,8 +21,15 @@ class CustomImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CustomThemeExtension theme = CustomThemeExtension.of(context);
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius.r),
+    return
+        // ClipRRect(
+        //   borderRadius: BorderRadius.circular(borderRadius.r),
+        Material(
+      shape: SmoothRectangleBorder(
+        smoothness: 0.6,
+        borderRadius: BorderRadius.circular(borderRadius.r),
+      ),
+      clipBehavior: Clip.antiAlias,
       child: SizedBox(
         width: width,
         height: height,
